@@ -55,11 +55,11 @@ The model.py file contains the code for training and saving the convolution neur
 My model consists of a convolution neural network based on the nvidia model (http://images.nvidia.com/content/tegra/automotive/images/2016/solutions/pdf/end-to-end-dl-using-px.pdf). I tested with other models like comma.ai but found out the nvidia got me better results. 
 I allowed to create new models and to choose the one to use a parameter is passed to the train function.
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+The data is normalized in the model using a Keras lambda layer.
 
 ####2. Attempts to reduce overfitting in the model
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting. 20% of the data was using on the validation set.
+The model was trained and validated on different data sets to ensure that the model was not overfitting. 20% of the data was used for the validation set.
 The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
 ####3. Model parameter tuning
@@ -81,6 +81,8 @@ The overall strategy for deriving a model architecture was to collect some data 
 I used a convolution neural network model based on the nvidia model. I thought this model might be appropriate because it was created for the same purpose and found out it works pretty well.
 
 To avoid preprocessing data in memory all at once I used a generator with a batch size of 32. In the generator I augmented the dataset by flipping each image horizontally and inverting the steering angle. I also made use of all three images (center, left and right) applying a correction for the side images. I tested at some stage to randomize what image to use so the examples are more normally distributed but I ended up using all images as I got better results.
+Here is an histogram of the steering angles from the original data:
+
 
 Images size was 160x320 and I used a keras cropping layer to remove portions of the image that are not the road. I removed 70 pixels from the top of the image and 25 from the bottom ending up with an image size of 65x320. 
 ```sh
