@@ -148,6 +148,8 @@ ________________________________________________________________________________
 ```
 
 I used 25 epochs and the loss can be visualized here:
+
+
 ![alt text][image11]
 
 ####3. Creation of the Training Set & Training Process
@@ -155,20 +157,32 @@ I used 25 epochs and the loss can be visualized here:
 To capture good driving behavior, I first recorded few laps on track one using center lane driving. I also recoreded driving in the opposite direction and recovering from the sides and also on the second track but found out my data wasn't helping so I ended up using provided data. Here is an example image of center, left and right lane driving:
 
 ![alt text][image5]
+
+
 ![alt text][image6]
+
+
 ![alt text][image7]
 
 After flipping the images to augment the dataset the images look like these:
 
 ![alt text][image8]
+
+
 ![alt text][image9]
+
+
 ![alt text][image10]
 
 
 Here is an histogram of the steering angles of the data used:
+
+
 ![alt text][image1]
 
 And after applying flipping and side angles corrections:
+
+
 ![alt text][image4]
 
 
