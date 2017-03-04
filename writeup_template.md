@@ -83,14 +83,23 @@ I used a convolution neural network model based on the nvidia model. I thought t
 To avoid preprocessing data in memory all at once I used a generator with a batch size of 32. In the generator I augmented the dataset by flipping each image horizontally and inverting the steering angle. I also made use of all three images (center, left and right) applying a correction for the side images. I tested at some stage to randomize what image to use so the examples are more normally distributed but I ended up using all images as I got better results.
 
 Images size was 160x320 and I used a keras cropping layer to remove portions of the image that are not the road. I removed 70 pixels from the top of the image and 25 from the bottom ending up with an image size of 65x320. 
+```sh
+model.add(Cropping2D(cropping=((70,25),(0,0))))
+```
+
+I also applied a lambda layer to normalize image data:
+```sh
+model.add(Lambda(lambda x: x / 255.0 - 0.5, input_shape=(160,320,3)))
+```
+
+As a loss function I used the mean squared error and adam optimizer for the learning rate:
+```sh
+ model.compile(loss='mse', optimizer='adam')
+```
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. 20% of the data was used for the validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
-To combat the overfitting, I modified the model so that ...
-
-Then I ... 
-
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
+The final step was to run the simulator to see how well the car was driving around track one. Using the default drive.py file with speed set at 9MPH the simulation ran pretty well but when increasing this value results are not so good.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
@@ -131,9 +140,6 @@ Trainable params: 348,219
 Non-trainable params: 0
 ____________________________________________________________________________________________________
 ```
-
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
 
 ![alt text][image1]
 
