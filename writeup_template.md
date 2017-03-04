@@ -16,13 +16,17 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./img/hist1.png "Histogram 1"
+[image2]: ./img/hist2.png "Histogram 2"
+[image3]: ./img/hist3.png "Histogram 3"
+[image4]: ./img/hist4.png "Histogram 4"
+[image5]: ./img/center1.png "Center Image"
+[image6]: ./img/right1.png "Right Image"
+[image7]: ./img/left.png "Left Image"
+[image8]: ./img/center_inverted1.png "Center Inverted Image"
+[image9]: ./img/right_inverted1.png "Right Inverted Image"
+[image10]: ./img/left_inverted.png "Left Inverted Image"
+[image11]: ./img/loss1.png "Loss"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -143,32 +147,31 @@ Non-trainable params: 0
 ____________________________________________________________________________________________________
 ```
 
-![alt text][image1]
+I used 25 epochs and the loss can be visualized here:
+![alt text][image11]
 
 ####3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+To capture good driving behavior, I first recorded few laps on track one using center lane driving. I also recoreded driving in the opposite direction and recovering from the sides and also on the second track but found out my data wasn't helping so I ended up using provided data. Here is an example image of center, left and right lane driving:
 
-![alt text][image2]
-
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
-![alt text][image3]
-![alt text][image4]
 ![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
 ![alt text][image6]
 ![alt text][image7]
 
-Etc ....
+After flipping the images to augment the dataset the images look like these:
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
+![alt text][image8]
+![alt text][image9]
+![alt text][image10]
 
 
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
+Here is an histogram of the steering angles of the data used:
+![alt text][image1]
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+And after applying flipping and side angles corrections:
+![alt text][image4]
+
+
+I finally randomly shuffled the data set and put 20% of the data into a validation set. 
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used an adam optimizer so that manually training the learning rate wasn't necessary.
